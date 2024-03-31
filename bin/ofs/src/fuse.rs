@@ -818,6 +818,10 @@ fn metadata2file_attr(metadata: &Metadata, atime: SystemTime, uid: u32, gid: u32
         gid,
         rdev: 0,
         blksize: 4096,
+        #[cfg(target_os = "macos")]
+        crtime : last_modified,
+        #[cfg(target_os = "macos")]
+        flags : 0,
     }
 }
 
