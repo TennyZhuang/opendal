@@ -462,6 +462,14 @@ impl PathFilesystem for Fuse {
         Ok(())
     }
 
+    async fn opendir(&self, req: Request, path: &OsStr, flags: u32) -> Result<ReplyOpen> {
+        log::debug!("opendir(path={:?}, flags=0x{:x})", path, flags);
+        Ok(ReplyOpen {
+            fh: 0,
+            flags,
+        })
+    }
+
     async fn open(&self, _req: Request, path: &OsStr, flags: u32) -> Result<ReplyOpen> {
         log::debug!("open(path={:?}, flags=0x{:x})", path, flags);
 
@@ -791,6 +799,20 @@ impl PathFilesystem for Fuse {
 
         Ok(ReplyCopyFileRange {
             copied: u64::from(written),
+        })
+    }
+
+    async fn statfs(&self, req: Request, path: &OsStr) -> Result<ReplyStatFs> {
+        log::debug!("statfs(path={:?})", path);
+        Ok(ReplyStatFs {
+            blocks: 1,
+            bfree: 0,
+            bavail: 0,
+            files: 1,
+            ffree: 0,
+            bsize: 4096,
+            namelen: u32::MAX,
+            frsize: 0,
         })
     }
 }
