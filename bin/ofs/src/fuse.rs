@@ -464,10 +464,7 @@ impl PathFilesystem for Fuse {
 
     async fn opendir(&self, _req: Request, path: &OsStr, flags: u32) -> Result<ReplyOpen> {
         log::debug!("opendir(path={:?}, flags=0x{:x})", path, flags);
-        Ok(ReplyOpen {
-            fh: 0,
-            flags,
-        })
+        Ok(ReplyOpen { fh: 0, flags })
     }
 
     async fn open(&self, _req: Request, path: &OsStr, flags: u32) -> Result<ReplyOpen> {
