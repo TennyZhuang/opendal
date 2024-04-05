@@ -462,7 +462,7 @@ impl PathFilesystem for Fuse {
         Ok(())
     }
 
-    async fn opendir(&self, req: Request, path: &OsStr, flags: u32) -> Result<ReplyOpen> {
+    async fn opendir(&self, _req: Request, path: &OsStr, flags: u32) -> Result<ReplyOpen> {
         log::debug!("opendir(path={:?}, flags=0x{:x})", path, flags);
         Ok(ReplyOpen {
             fh: 0,
@@ -802,7 +802,7 @@ impl PathFilesystem for Fuse {
         })
     }
 
-    async fn statfs(&self, req: Request, path: &OsStr) -> Result<ReplyStatFs> {
+    async fn statfs(&self, _req: Request, path: &OsStr) -> Result<ReplyStatFs> {
         log::debug!("statfs(path={:?})", path);
         Ok(ReplyStatFs {
             blocks: 1,
