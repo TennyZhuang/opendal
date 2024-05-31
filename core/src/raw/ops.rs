@@ -70,7 +70,7 @@ impl OpDelete {
 /// Args for `list` operation.
 #[derive(Debug, Clone)]
 pub struct OpList {
-    /// The limit passed to underlying service to specify the max results
+    /// The limit passed to the underlying service to specify the max results
     /// that could return per-request.
     ///
     /// Users could use this to control the memory usage of list operation.
@@ -81,7 +81,7 @@ pub struct OpList {
     /// The recursive is used to control whether the list operation is recursive.
     ///
     /// - If `false`, list operation will only list the entries under the given path.
-    /// - If `true`, list operation will list all entries that starts with given path.
+    /// - If `true`, list operation will list all entries that start with given path.
     ///
     /// Default to `false`.
     recursive: bool,
@@ -90,10 +90,10 @@ pub struct OpList {
     /// Lister will make sure the result for specified meta is **known**:
     ///
     /// - `Some(v)` means exist.
-    /// - `None` means services doesn't have this meta.
+    /// - `None` means service doesn't have this meta.
     metakey: FlagSet<Metakey>,
     /// The concurrent of stat operations inside list operation.
-    /// Users could use this to control the number of concurrent stat operation when metadata is unknown.
+    /// Users could use this to control the number of concurrent stat operations when metadata is unknown.
     ///
     /// - If this is set to <= 1, the list operation will be sequential.
     /// - If this is set to > 1, the list operation will be concurrent,
@@ -145,7 +145,7 @@ impl OpList {
     /// The recursive is used to control whether the list operation is recursive.
     ///
     /// - If `false`, list operation will only list the entries under the given path.
-    /// - If `true`, list operation will list all entries that starts with given path.
+    /// - If `true`, list operation will list all entries that start with given path.
     ///
     /// Default to `false`.
     pub fn with_recursive(mut self, recursive: bool) -> Self {
@@ -310,41 +310,41 @@ pub struct OpRead {
 }
 
 impl OpRead {
-    /// Create a default `OpRead` which will read whole content of path.
+    /// Create a default `OpRead` which will read the whole content of the given path.
     pub fn new() -> Self {
         Self::default()
     }
 
-    /// Sets the content-disposition header that should be send back by the remote read operation.
+    /// Sets the content-disposition header that should be sent back by the remote read operation.
     pub fn with_override_content_disposition(mut self, content_disposition: &str) -> Self {
         self.override_content_disposition = Some(content_disposition.into());
         self
     }
 
-    /// Returns the content-disposition header that should be send back by the remote read
+    /// Returns the content-disposition header that should be sent back by the remote read
     /// operation.
     pub fn override_content_disposition(&self) -> Option<&str> {
         self.override_content_disposition.as_deref()
     }
 
-    /// Sets the cache-control header that should be send back by the remote read operation.
+    /// Sets the cache-control header that should be sent back by the remote read operation.
     pub fn with_override_cache_control(mut self, cache_control: &str) -> Self {
         self.override_cache_control = Some(cache_control.into());
         self
     }
 
-    /// Returns the cache-control header that should be send back by the remote read operation.
+    /// Returns the cache-control header that should be sent back by the remote read operation.
     pub fn override_cache_control(&self) -> Option<&str> {
         self.override_cache_control.as_deref()
     }
 
-    /// Sets the content-type header that should be send back by the remote read operation.
+    /// Sets the content-type header that should be sent back by the remote read operation.
     pub fn with_override_content_type(mut self, content_type: &str) -> Self {
         self.override_content_type = Some(content_type.into());
         self
     }
 
-    /// Returns the content-type header that should be send back by the remote read operation.
+    /// Returns the content-type header that should be sent back by the remote read operation.
     pub fn override_content_type(&self) -> Option<&str> {
         self.override_content_type.as_deref()
     }
@@ -377,7 +377,7 @@ impl OpRead {
         self
     }
 
-    /// Get version from option
+    /// Get the version from option
     pub fn version(&self) -> Option<&str> {
         self.version.as_deref()
     }
@@ -479,7 +479,7 @@ impl OpReader {
         self
     }
 
-    /// Get gap from option
+    /// Get the gap from option
     pub fn gap(&self) -> Option<usize> {
         self.gap
     }
@@ -524,36 +524,36 @@ impl OpStat {
         self.if_none_match.as_deref()
     }
 
-    /// Sets the content-disposition header that should be send back by the remote read operation.
+    /// Sets the content-disposition header that should be sent back by the remote read operation.
     pub fn with_override_content_disposition(mut self, content_disposition: &str) -> Self {
         self.override_content_disposition = Some(content_disposition.into());
         self
     }
 
-    /// Returns the content-disposition header that should be send back by the remote read
+    /// Returns the content-disposition header that should be sent back by the remote read
     /// operation.
     pub fn override_content_disposition(&self) -> Option<&str> {
         self.override_content_disposition.as_deref()
     }
 
-    /// Sets the cache-control header that should be send back by the remote read operation.
+    /// Sets the cache-control header that should be sent back by the remote read operation.
     pub fn with_override_cache_control(mut self, cache_control: &str) -> Self {
         self.override_cache_control = Some(cache_control.into());
         self
     }
 
-    /// Returns the cache-control header that should be send back by the remote read operation.
+    /// Returns the cache-control header that should be sent back by the remote read operation.
     pub fn override_cache_control(&self) -> Option<&str> {
         self.override_cache_control.as_deref()
     }
 
-    /// Sets the content-type header that should be send back by the remote read operation.
+    /// Sets the content-type header that should be sent back by the remote read operation.
     pub fn with_override_content_type(mut self, content_type: &str) -> Self {
         self.override_content_type = Some(content_type.into());
         self
     }
 
-    /// Returns the content-type header that should be send back by the remote read operation.
+    /// Returns the content-type header that should be sent back by the remote read operation.
     pub fn override_content_type(&self) -> Option<&str> {
         self.override_content_type.as_deref()
     }
@@ -564,7 +564,7 @@ impl OpStat {
         self
     }
 
-    /// Get version from option
+    /// Get the version from option
     pub fn version(&self) -> Option<&str> {
         self.version.as_deref()
     }
@@ -585,25 +585,25 @@ pub struct OpWrite {
 impl OpWrite {
     /// Create a new `OpWrite`.
     ///
-    /// If input path is not a file path, an error will be returned.
+    /// If the input path is not a file path, an error will be returned.
     pub fn new() -> Self {
         Self::default()
     }
 
-    /// Get the append from op.
+    /// Get the `append` from op.
     ///
-    /// The append is the flag to indicate that this write operation is an append operation.
+    /// The `append`is the flag to indicate that this `write` operation is an append operation.
     pub fn append(&self) -> bool {
         self.append
     }
 
-    /// Set the append mode of op.
+    /// Set the `append` mode of op.
     ///
-    /// If the append mode is set, the data will be appended to the end of the file.
+    /// If the `append` mode is set, the data will be appended to the end of the file.
     ///
     /// # Notes
     ///
-    /// Service could return `Unsupported` if the underlying storage does not support append.
+    /// Service could return `Unsupported` if the underlying storage does not support `append`.
     pub fn with_append(mut self, append: bool) -> Self {
         self.append = append;
         self
@@ -611,7 +611,7 @@ impl OpWrite {
 
     /// Get the chunk from op.
     ///
-    /// The chunk is used by service to decide the chunk size of the underlying writer.
+    /// The service uses the chunk to decide the chunk size of the underlying writer.
     pub fn chunk(&self) -> Option<usize> {
         self.chunk
     }
@@ -622,7 +622,7 @@ impl OpWrite {
     ///
     /// ## NOTE
     ///
-    /// Service could have their own minimum chunk size while perform write
+    /// Services could have their own minimum chunk size while perform write
     /// operations like multipart uploads. So the chunk size may be larger than
     /// the given buffer size.
     pub fn with_chunk(mut self, chunk: usize) -> Self {
